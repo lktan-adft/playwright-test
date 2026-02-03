@@ -4,7 +4,7 @@ pipeline {
         // This avoids installing Node/Browsers manually on your Jenkins server.
         docker {
             label 'pine64' 
-            image 'mcr.microsoft.com/playwright:v1.57.0-noble' 
+            image 'mcr.microsoft.com/playwright:v1.58.1-noble' 
             // Ensure this version matches your package.json version
             args '-u root' 
         }
