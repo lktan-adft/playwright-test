@@ -3,6 +3,7 @@ pipeline {
         // Use the official Playwright Docker image. 
         // This avoids installing Node/Browsers manually on your Jenkins server.
         docker {
+            label 'pine64' 
             image 'mcr.microsoft.com/playwright:v1.57.0-noble' 
             // Ensure this version matches your package.json version
             args '-u root' 
