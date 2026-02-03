@@ -53,7 +53,7 @@ pipeline {
                     sh """
                         export TEST_ENV=${params.TEST_ENV}
                         export CI=true
-                        npx playwright test ${testFolder} --reporter=html
+                        npx playwright test ${testFolder} --reporter=html,junit
                     """
                 }
             }
