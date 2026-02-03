@@ -11,7 +11,13 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+const rawIp = process.env.TARGET_IP || 'localhost';
+const baseURL = rawIp.startsWith('http') ? rawIp : `http://${rawIp}`;
+
 export default defineConfig({
+  use: { baseURL },
+  
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -26,6 +32,7 @@ export default defineConfig({
     ['html'], 
     ['junit', { outputFile: 'results.xml' }] 
   ],
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
