@@ -1,18 +1,45 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.describe('Example Test Suite with Factory Reset', () => {
+  // 1. SETUP: Runs ONCE before the first test in this file starts
+  test.beforeAll(async ({ request, baseURL }) => {
+    console.log('⚠️ Triggering Factory Reset...');
+    
+    // // Example: Call your device's reset API endpoint
+    // // Note: We use 'request' fixture for API calls, not 'page'
+    // const response = await request.post('/api/system/factory-reset');
+    
+    // // Verify reset command was accepted
+    // expect(response.ok()).toBeTruthy();
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+    // WAIT: Factory resets take time. Wait for device to come back online.
+    console.log('⏳ Waiting 30s for device reboot...');
+    // Simple sleep (or use a polling loop to check /health)
+    await new Promise(resolve => setTimeout(resolve, 3000)); 
+    console.log('✅ Device is ready.');
+  });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  // 2. TEARDOWN: Runs ONCE after all tests in this file finish
+  test.afterAll(async () => {
+    console.log('🧹 Cleaning up temporary files...');
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  });
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  test('has title', async ({ page }) => {
+    await page.goto('https://playwright.dev/');
+
+    // Expect a title "to contain" a substring.
+    await expect(page).toHaveTitle(/Playwright/);
+  });
+
+  test('get started link', async ({ page }) => {
+    await page.goto('https://playwright.dev/');
+
+    // Click the get started link.
+    await page.getByRole('link', { name: 'Get started' }).click();
+
+    // Expects page to have a heading with the name of Installation.
+    await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  });
+
 });
