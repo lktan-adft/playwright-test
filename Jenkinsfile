@@ -72,7 +72,8 @@ pipeline {
                 reportName: 'Playwright HTML Report'
             ])
             // Publish JUnit results for the trend graph
-            junit 'results.xml'
+            // temporary remove for testing
+            // junit 'results.xml'
         }
     }
 }
