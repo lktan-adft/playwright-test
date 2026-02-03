@@ -29,6 +29,7 @@ pipeline {
             defaultValue: true, 
             description: 'Run tests in headless mode?'
         )
+        string(name: 'DEVICE_IP', defaultValue: '192.168.1.100', description: 'Target Device IP Address')        
     }
 
     stages {
@@ -42,6 +43,10 @@ pipeline {
             environment {
                 // Pass Jenkins params to system env variables
                 BASE_URL = "Determined by .env file in config/" 
+                // 2. Map the Jenkins param (params.DEVICE_IP) to an Env Var (TARGET_IP)
+                // You can name the env var whatever you want Playwright to see
+                TARGET_IP = "${params.DEVICE_IP}" 
+            }                
             }
             steps {
                 script {
