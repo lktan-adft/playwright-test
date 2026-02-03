@@ -12,12 +12,10 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 
-const rawIp = process.env.TARGET_IP || 'localhost';
+const rawIp = process.env.TARGET_IP || '192.168.1.100';
 const baseURL = rawIp.startsWith('http') ? rawIp : `http://${rawIp}`;
 
 export default defineConfig({
-  use: { baseURL },
-  
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -37,7 +35,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-
+    baseURL,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
