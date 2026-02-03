@@ -45,8 +45,7 @@ pipeline {
                 BASE_URL = "Determined by .env file in config/" 
                 // 2. Map the Jenkins param (params.DEVICE_IP) to an Env Var (TARGET_IP)
                 // You can name the env var whatever you want Playwright to see
-                TARGET_IP = "${params.DEVICE_IP}" 
-            }                
+                TARGET_IP = "${params.DEVICE_IP}"         
             }
             steps {
                 script {
