@@ -28,6 +28,13 @@ test.describe('Example Test Suite with Factory Reset Each', () => {
   test('has title', async ({ page }) => {
     const deviceIp = process.env.TARGET_IP || '192.168.1.100'; 
     console.log(`Connecting to device at: ${deviceIp}`);  
+    if (process.env.ENV == 'staging') {
+      console.log('Running in staging environment - additional setup can be done here.');
+    }
+    else if (process.env.ENV == 'development') {
+      console.log('Running in development environment - additional setup can be done here.');
+    }
+    
     await page.goto(`http://${deviceIp}/`);
 
     // Expect a title "to contain" a substring.
