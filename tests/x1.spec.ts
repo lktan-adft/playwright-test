@@ -31,7 +31,7 @@ test.describe('Example Test Suite with Factory Reset Each', () => {
     if (process.env.ENV == 'staging') {
       console.log('Running in staging environment - additional setup can be done here.');
     }
-    else if (process.env.ENV == 'development') {
+    else if (process.env.ENV == 'dev') {
       console.log('Running in development environment - additional setup can be done here.');
     }
     
