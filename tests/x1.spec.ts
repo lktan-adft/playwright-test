@@ -3,6 +3,7 @@ test.describe('Example Test Suite with Factory Reset Each', () => {
   // 1. SETUP: Runs ONCE before the first test in this file starts
   test.beforeEach(async ({ request, baseURL }) => {
     console.log('⚠️ Triggering Factory Reset...');
+    console.log(`Environment is: ${process.env.ENV}`);
     
     // // Example: Call your device's reset API endpoint
     // // Note: We use 'request' fixture for API calls, not 'page'
